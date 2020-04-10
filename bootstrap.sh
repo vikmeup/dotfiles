@@ -57,39 +57,16 @@ install_ruby() {
   rbenv global $ruby_version
 }
 
-install_vundle() {
-  echo ''
-  echo 'Installing vundle...'
-  if [ ! -d "~/.vim/bundle/Vundle.vim" ]
-  then
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-    vim +PluginInstall +qall
-  fi
-}
-
-install_tmux() {
-  echo ''
-  echo 'Installing tmux and TPM'
-  if [ "$(uname)" == "Darwin" ]; then
-    brew install tmux
-  fi
-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-}
-
-install_powerline() {
-  echo ''
-  echo 'Installing Powerline fonts'
-  git clone https://github.com/powerline/fonts.git --depth=1
-  cd fonts
-  ./install.sh
-  cd ..
-  rm -rf fonts
-}
-
 install_oh_my_zsh() {
   echo ''
   echo 'Installing oh my zsh...'
   curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+}
+
+setup_zsh_plugins() {
+  echo ''
+  echo 'Installing zsh plugins...'
+  git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 }
 
 setup_zsh() {
@@ -134,10 +111,8 @@ fi
 if [ "$ruby" == "true" ]; then
   install_ruby
 fi
-install_vundle
-install_tmux
-install_powerline
 install_oh_my_zsh
+setup_zsh_plugins
 setup_zsh
 
 echo ''

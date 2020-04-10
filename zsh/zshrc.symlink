@@ -45,6 +45,7 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(git osx ruby brew pod git-extras github jira wd)
 
 source $ZSH/oh-my-zsh.sh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 #------------------------------
 # Other
