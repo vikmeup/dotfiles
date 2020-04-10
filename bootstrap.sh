@@ -64,9 +64,12 @@ install_oh_my_zsh() {
 }
 
 setup_zsh_plugins() {
-  echo ''
-  echo 'Installing zsh plugins...'
-  git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+  if [ ! -d "~/.zsh/zsh-autosuggestions" ]
+  then
+    echo ''
+    echo 'Installing zsh plugins...'
+    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+  fi
 }
 
 setup_zsh() {
@@ -76,6 +79,12 @@ setup_zsh() {
     echo 'Changing default shell to zsh...'
     chsh -s /bin/zsh
   fi
+}
+
+install_cocoapods() {
+  echo ''
+  echo 'Installing cocoapods...'
+  gem install cocoapods
 }
 
 check_requirements
@@ -114,6 +123,7 @@ fi
 install_oh_my_zsh
 setup_zsh_plugins
 setup_zsh
+install_cocoapods
 
 echo ''
 echo 'System ready! Now run install.sh'
